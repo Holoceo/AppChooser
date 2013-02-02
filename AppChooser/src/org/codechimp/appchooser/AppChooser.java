@@ -20,15 +20,19 @@ import android.widget.ListView;
 public class AppChooser {
 	
 	static List<AppItem> appList = new ArrayList<AppItem>();
-	
+
 	public static void showChooserDialog(final Context context) {
+		showChooserDialog(context, context.getString(R.string.appchooser_dialogtitle));
+	}
+		
+	public static void showChooserDialog(final Context context, final String dialogTitle) {
 		
 		if (appList.isEmpty())
 			refreshAppList(context);
 		
 		Builder builder = new AlertDialog.Builder(context);
 		
-		builder.setTitle("Select App"); // context.getString(R.string.dialog_title)
+		builder.setTitle(dialogTitle);
 
 		ListView appListView = new ListView(context);
 

@@ -18,6 +18,7 @@ class AppAdapter extends ArrayAdapter<AppItem> {
 
 	static class ViewHolder {
 		TextView textviewTitle;
+		ImageView imageviewIcon;
 	}
 
 	public AppAdapter(Context context, java.util.List<AppItem> apps) {
@@ -36,6 +37,8 @@ class AppAdapter extends ArrayAdapter<AppItem> {
 			holder = new ViewHolder();
 			holder.textviewTitle = (TextView) convertView
 					.findViewById(R.id.apptitle);
+			holder.imageviewIcon = (ImageView) convertView
+					.findViewById(R.id.appicon);
 			convertView.setTag(holder);
 		} else {
 			// view already defined, retrieve view holder
@@ -49,9 +52,7 @@ class AppAdapter extends ArrayAdapter<AppItem> {
 
 		holder.textviewTitle.setText(app.getTitle());
 
-		// parent.getContext();
-		
-		holder.textviewTitle.setCompoundDrawablesWithIntrinsicBounds(app.getIcon(), null, null, null);
+		holder.imageviewIcon.setImageDrawable(app.getIcon());
 
 		return convertView;
 	}
