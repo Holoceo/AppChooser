@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">AppChooserDemo</string>
-    <string name="details">Press to test the AppChooser dialog,</string>
+    <string name="details">Press to test the AppChooser dialog.</string>
     <string name="choose_app">Choose App</string>
 
 </resources>
