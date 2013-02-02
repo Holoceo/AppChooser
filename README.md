@@ -1,10 +1,6 @@
 AppChooser
 ==========
 
-## Early work in progress, implementation may change. ##
-
-----------
-
 AppChooser is a library for Android designed to facilitate easy selection of an installed application via a dialog.
 
 AppChooser inherits your theming so can be used with light or dark variants as shown below;
