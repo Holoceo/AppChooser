@@ -12,7 +12,7 @@ class AppItem {
 	public AppItem(Context context, ApplicationInfo applicationInfo) {
 		this.title = applicationInfo.loadLabel(context.getPackageManager()).toString();
 		this.packageName = applicationInfo.packageName;
-		// this.icon = icon;		
+		this.icon = applicationInfo.loadIcon(context.getPackageManager());		
 	}
 
 	public String getTitle() {

@@ -1,6 +1,7 @@
 package org.codechimp.appchooser;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -60,8 +61,17 @@ public class AppChooser {
         		appList.add(new AppItem(context, appItem.activityInfo.applicationInfo));
         }
         
+        java.util.Collections.sort(appList, new AppComparator());
+        
 //        Intent LaunchIntent = context.getPackageManager().getLaunchIntentForPackage(mIdList.get(2));
 //        context.startActivity( LaunchIntent );
+	}
+
+	static class AppComparator implements Comparator<AppItem> {
+	    @Override
+	    public int compare(AppItem o1, AppItem o2) {
+	        return o1.getTitle().compareTo(o2.getTitle());
+	    }
 	}
 
 }
