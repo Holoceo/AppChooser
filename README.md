@@ -5,11 +5,11 @@ AppChooser
 
 ----------
 
-
-
 AppChooser is a library for Android designed to facilitate easy selection of an installed application via a dialog.
 
-AppChooser inherits your theming so can be used with light or dark variants.
+AppChooser inherits your theming so can be used with light or dark variants as shown below;
+
+![Example Image Dark][1] ![Example Image Light][2]
 
 Developed By
 ============
@@ -40,5 +40,5 @@ License
 
 
 
- [1]: https://raw.github.com/codechimp-org/AppRater/master/Screenshots/demo-dark.png
- [2]: https://raw.github.com/codechimp-org/AppRater/master/Screenshots/demo-light.png
+ [1]: https://raw.github.com/codechimp-org/AppChooser/master/Screenshots/demo-dark.png
+ [2]: https://raw.github.com/codechimp-org/AppChooser/master/Screenshots/demo-light.png
