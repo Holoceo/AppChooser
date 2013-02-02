@@ -44,14 +44,14 @@ public class MainActivity extends Activity implements AppChooserListener  {
 	}
 
 	@Override
-	public void onAppSelected(AppItem value) {
+	public void onAppChooserSelected(AppItem value) {
 
 		textviewSelected.setText(value.getPackageName());
 		
 	}
 
 	@Override
-	public void onDismiss() {
+	public void onAppChooserDismiss() {
 		textviewSelected.setText("Dismissed");
 		
 	}

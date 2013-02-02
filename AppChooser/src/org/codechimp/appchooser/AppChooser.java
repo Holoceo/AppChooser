@@ -48,7 +48,7 @@ public class AppChooser {
 
 			@Override
 			public void onCancel(DialogInterface dialog) {
-				appChooserListener.onDismiss();				
+				appChooserListener.onAppChooserDismiss();				
 			}
 			
 		});
@@ -69,7 +69,7 @@ public class AppChooser {
 					long arg3) {
 				
 				//TODO: send choice back
-				appChooserListener.onAppSelected((AppItem) appListView.getItemAtPosition(position));
+				appChooserListener.onAppChooserSelected((AppItem) appListView.getItemAtPosition(position));
 				
 				dialog.dismiss();						
 			}
