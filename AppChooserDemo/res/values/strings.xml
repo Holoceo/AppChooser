@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AppChooserDemo</string>
+    <string name="details">Press to test the Choose App dialog</string>
+    <string name="choose_app">Choose App</string>
+    <string name="menu_settings">Settings</string>
+
+</resources>
