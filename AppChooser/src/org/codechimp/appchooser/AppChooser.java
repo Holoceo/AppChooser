@@ -18,7 +18,7 @@ import android.widget.ListView;
 
 public class AppChooser {
 	
-	static List<App> appList = new ArrayList<App>();
+	static List<AppItem> appList = new ArrayList<AppItem>();
 	
 	public static void showChooserDialog(final Context context) {
 		
@@ -57,7 +57,7 @@ public class AppChooser {
         appList.clear();
         
         for(ResolveInfo appItem:pkgAppsList){
-        		appList.add(new App(context, appItem.activityInfo.applicationInfo));
+        		appList.add(new AppItem(context, appItem.activityInfo.applicationInfo));
         }
         
 //        Intent LaunchIntent = context.getPackageManager().getLaunchIntentForPackage(mIdList.get(2));

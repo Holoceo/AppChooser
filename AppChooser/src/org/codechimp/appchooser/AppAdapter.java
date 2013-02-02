@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-class AppAdapter extends ArrayAdapter<App> {
+class AppAdapter extends ArrayAdapter<AppItem> {
 
 	private static final String TAG = "AppChooser";
 	private static final int RESOURCE = R.layout.app_row;
@@ -19,7 +19,7 @@ class AppAdapter extends ArrayAdapter<App> {
 		TextView textviewTitle;
 	}
 
-	public AppAdapter(Context context, java.util.List<App> apps) {
+	public AppAdapter(Context context, java.util.List<AppItem> apps) {
 		super(context, RESOURCE, apps);
 		inflater = LayoutInflater.from(context);
 	}
@@ -41,7 +41,7 @@ class AppAdapter extends ArrayAdapter<App> {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		App app = (App) getItem(position);
+		AppItem app = (AppItem) getItem(position);
 		if (app == null) {
 			Log.e(TAG, "Invalid App position: " + position);
 		}
