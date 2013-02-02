@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 class AppAdapter extends ArrayAdapter<AppItem> {
@@ -17,6 +18,7 @@ class AppAdapter extends ArrayAdapter<AppItem> {
 
 	static class ViewHolder {
 		TextView textviewTitle;
+		ImageView imageviewIcon;
 	}
 
 	public AppAdapter(Context context, java.util.List<AppItem> apps) {
@@ -35,6 +37,8 @@ class AppAdapter extends ArrayAdapter<AppItem> {
 			holder = new ViewHolder();
 			holder.textviewTitle = (TextView) convertView
 					.findViewById(R.id.apptitle);
+			holder.imageviewIcon = (ImageView) convertView
+					.findViewById(R.id.appicon);
 			convertView.setTag(holder);
 		} else {
 			// view already defined, retrieve view holder
@@ -46,14 +50,11 @@ class AppAdapter extends ArrayAdapter<AppItem> {
 			Log.e(TAG, "Invalid App position: " + position);
 		}
 
-		Log.i(TAG, app.getTitle());
-		
 		holder.textviewTitle.setText(app.getTitle());
 
 		// parent.getContext();
 
-		// holder.textviewTitle.setCompoundDrawables( app.getIcon(), null, null,
-		// null );
+		holder.imageviewIcon.setImageDrawable(app.getIcon());
 
 		return convertView;
 	}
