@@ -8,6 +8,9 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.ResolveInfo;
@@ -21,11 +24,11 @@ public class AppChooser {
 	
 	static List<AppItem> appList = new ArrayList<AppItem>();
 
-	public static void showChooserDialog(final Context context) {
-		showChooserDialog(context, context.getString(R.string.appchooser_dialogtitle));
+	public static void showChooserDialog(final Context context, final AppChooserListener appChooserListener) {
+		showChooserDialog(context, appChooserListener, context.getString(R.string.appchooser_dialogtitle));
 	}
 		
-	public static void showChooserDialog(final Context context, final String dialogTitle) {
+	public static void showChooserDialog(final Context context, final AppChooserListener appChooserListener, final String dialogTitle) { 
 		
 		if (appList.isEmpty())
 			refreshAppList(context);
@@ -34,24 +37,45 @@ public class AppChooser {
 		
 		builder.setTitle(dialogTitle);
 
-		ListView appListView = new ListView(context);
+		final ListView appListView = new ListView(context);
 
 		AppAdapter appAdapter = new AppAdapter(context, appList);
 		appListView.setAdapter(appAdapter);
 
 		builder.setView(appListView);
+		
+		builder.setOnCancelListener(new OnCancelListener() {
+
+			@Override
+			public void onCancel(DialogInterface dialog) {
+				appChooserListener.onDismiss();				
+			}
+			
+		});
+		
+//		builder.setOnDismissListener(new OnDismissListener() {			
+//			@Override
+//			public void onDismiss(DialogInterface dialog) {
+//				appChooserListener.onDismiss();
+//				
+//			}
+//		});
+//		
 		final Dialog dialog = builder.create();
 
 		appListView.setOnItemClickListener(new OnItemClickListener() {		
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long arg3) {
+				
 				//TODO: send choice back
-				dialog.dismiss();				
+				appChooserListener.onAppSelected((AppItem) appListView.getItemAtPosition(position));
+				
+				dialog.dismiss();						
 			}
-		});
+		});		
 
-		dialog.show();		
+		dialog.show();			
 	}
 	
 	public static void refreshAppList(final Context context){

@@ -1,7 +1,6 @@
 package org.codechimp.appchooser;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ class AppAdapter extends ArrayAdapter<AppItem> {
 	private static final int RESOURCE = R.layout.app_row;
 	private LayoutInflater inflater;
 
-	static class ViewHolder {
+	static class ViewHolder {		
 		TextView textviewTitle;
 		ImageView imageviewIcon;
 	}

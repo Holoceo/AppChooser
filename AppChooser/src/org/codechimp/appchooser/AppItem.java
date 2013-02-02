@@ -4,20 +4,22 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
 
-class AppItem {
-	private String   title;
-	private String   packageName;
+public class AppItem {
+	private String title;
+	private String packageName;
 	private Drawable icon;
-	
+
 	public AppItem(Context context, ApplicationInfo applicationInfo) {
-		this.title = applicationInfo.loadLabel(context.getPackageManager()).toString();
+		this.title = applicationInfo.loadLabel(context.getPackageManager())
+				.toString();
 		this.packageName = applicationInfo.packageName;
-		this.icon = applicationInfo.loadIcon(context.getPackageManager());		
+		this.icon = applicationInfo.loadIcon(context.getPackageManager());
 	}
 
 	public String getTitle() {
 		return title;
 	}
+
 	public String getPackageName() {
 		return packageName;
 	}
