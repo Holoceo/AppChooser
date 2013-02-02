@@ -7,38 +7,40 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 
 public class AppChooser {
 	
+	static List<App> appList = new ArrayList<App>();
+	
 	public static void showChooserDialog(final Context context) {
 		
-		buildAppList(context);
+		if (appList.isEmpty())
+			refreshAppList(context);
 		
 		Builder builder = new AlertDialog.Builder(context);
 		
 		builder.setTitle("Select App"); // context.getString(R.string.dialog_title)
 
-		ListView modeList = new ListView(context);
-		String[] stringArray = new String[] { "Bright Mode", "Normal Mode" };
-		ArrayAdapter<String> modeAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, android.R.id.text1, stringArray);
-		modeList.setAdapter(modeAdapter);
+		ListView appListView = new ListView(context);
 
-		builder.setView(modeList);
+		AppAdapter appAdapter = new AppAdapter(context, appList);
+		appListView.setAdapter(appAdapter);
+
+		builder.setView(appListView);
 		final Dialog dialog = builder.create();
 
-		modeList.setOnClickListener(new OnClickListener() {			
+		appListView.setOnItemClickListener(new OnItemClickListener() {		
 			@Override
-			public void onClick(View v) {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
 				//TODO: send choice back
 				dialog.dismiss();				
 			}
@@ -47,15 +49,15 @@ public class AppChooser {
 		dialog.show();		
 	}
 	
-	private static void buildAppList(final Context context){
+	public static void refreshAppList(final Context context){
 		final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         final List<ResolveInfo> pkgAppsList = context.getPackageManager().queryIntentActivities( mainIntent, 0);
+                
+        appList.clear();
         
-        ArrayList<String> mIdList=new ArrayList<String>();
         for(ResolveInfo appItem:pkgAppsList){
-                mIdList.add(appItem.activityInfo.applicationInfo.packageName);
-                //appItem.activityInfo.applicationInfo.name;
+        		appList.add(new App(context, appItem.activityInfo.applicationInfo));
         }
         
 //        Intent LaunchIntent = context.getPackageManager().getLaunchIntentForPackage(mIdList.get(2));

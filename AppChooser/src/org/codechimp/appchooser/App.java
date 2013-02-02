@@ -1,5 +1,7 @@
 package org.codechimp.appchooser;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
 
 class App {
@@ -7,11 +9,10 @@ class App {
 	private String   packageName;
 	private Drawable icon;
 	
-
-	public App(String title, String packageName, Drawable icon ) {
-		this.title = title;
-		this.packageName = packageName;
-		this.icon = icon;		
+	public App(Context context, ApplicationInfo applicationInfo) {
+		this.title = applicationInfo.loadLabel(context.getPackageManager()).toString();
+		this.packageName = applicationInfo.packageName;
+		// this.icon = icon;		
 	}
 
 	public String getTitle() {

@@ -1,6 +1,7 @@
 package org.codechimp.appchooser;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-class AppAdapter extends ArrayAdapter {
+class AppAdapter extends ArrayAdapter<App> {
 
 	private static final String TAG = "AppChooser";
 	private static final int RESOURCE = R.layout.app_row;
@@ -18,7 +19,6 @@ class AppAdapter extends ArrayAdapter {
 		TextView textviewTitle;
 	}
 
-	@SuppressWarnings("unchecked")
 	public AppAdapter(Context context, java.util.List<App> apps) {
 		super(context, RESOURCE, apps);
 		inflater = LayoutInflater.from(context);
@@ -46,6 +46,8 @@ class AppAdapter extends ArrayAdapter {
 			Log.e(TAG, "Invalid App position: " + position);
 		}
 
+		Log.i(TAG, app.getTitle());
+		
 		holder.textviewTitle.setText(app.getTitle());
 
 		// parent.getContext();
