@@ -22,19 +22,11 @@ public class MainActivity extends Activity {
 		buttonTest.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				
-				// This forces display of the rate prompt.
-				// It should only be used for testing purposes
 				AppChooser.showChooserDialog(v.getContext());
+				
 			}
 		});
 
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
 	}
 
 }
