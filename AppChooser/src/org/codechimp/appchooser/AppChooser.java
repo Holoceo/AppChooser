@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,7 +29,7 @@ public class AppChooser {
 		
 	public static void showChooserDialog(final Context context, final AppChooserListener appChooserListener, final String dialogTitle) { 
 		
-		if (appList.isEmpty())
+		//if (appList.isEmpty())
 			refreshAppList(context);
 		
 		Builder builder = new AlertDialog.Builder(context);
@@ -51,14 +52,6 @@ public class AppChooser {
 			
 		});
 		
-//		builder.setOnDismissListener(new OnDismissListener() {			
-//			@Override
-//			public void onDismiss(DialogInterface dialog) {
-//				appChooserListener.onDismiss();
-//				
-//			}
-//		});
-//		
 		final Dialog dialog = builder.create();
 
 		appListView.setOnItemClickListener(new OnItemClickListener() {		
@@ -66,7 +59,6 @@ public class AppChooser {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,
 					long arg3) {
 				
-				//TODO: send choice back
 				appChooserListener.onAppChooserSelected((AppItem) appListView.getItemAtPosition(position));
 				
 				dialog.dismiss();						
@@ -76,10 +68,11 @@ public class AppChooser {
 		dialog.show();			
 	}
 	
-	public static void refreshAppList(final Context context){
+	private static void refreshAppList(final Context context){
 		final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        final List<ResolveInfo> pkgAppsList = context.getPackageManager().queryIntentActivities( mainIntent, 0);
+        context.getPackageManager();
+		final List<ResolveInfo> pkgAppsList = context.getPackageManager().queryIntentActivities( mainIntent, 0);
                 
         appList.clear();
         
@@ -88,15 +81,12 @@ public class AppChooser {
         }
         
         java.util.Collections.sort(appList, new AppComparator());
-        
-//        Intent LaunchIntent = context.getPackageManager().getLaunchIntentForPackage(mIdList.get(2));
-//        context.startActivity( LaunchIntent );
 	}
 
 	static class AppComparator implements Comparator<AppItem> {
 	    @Override
 	    public int compare(AppItem o1, AppItem o2) {
-	        return o1.getTitle().compareTo(o2.getTitle());
+	        return o1.getTitle().compareToIgnoreCase(o2.getTitle());
 	    }
 	}
 

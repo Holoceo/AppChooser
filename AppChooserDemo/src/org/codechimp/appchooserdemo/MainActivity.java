@@ -30,13 +30,8 @@ public class MainActivity extends Activity implements AppChooserListener  {
 		buttonTest.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				
-				// The method to display the dialog, populating an app list if it has not been done already
+				// The method to display the dialog
 				AppChooser.showChooserDialog(v.getContext(), activity);				
-				// or if you want your own dialog title
-				// AppChooser.showChooserDialog(v.getContext(), activity, "My Dialog");
-				
-				// If you want to refresh the app list before showing the dialog again 
-				// AppChooser.refreshAppList(v.getContext());
 				
 			}
 		});

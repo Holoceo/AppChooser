@@ -1,6 +1,8 @@
 package org.codechimp.appchooser;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +19,12 @@ class AppAdapter extends ArrayAdapter<AppItem> {
 
 	static class ViewHolder {		
 		TextView textviewTitle;
-		ImageView imageviewIcon;
+		ImageView imageviewIcon;		
 	}
 
 	public AppAdapter(Context context, java.util.List<AppItem> apps) {
 		super(context, RESOURCE, apps);
-		inflater = LayoutInflater.from(context);
+		inflater = LayoutInflater.from(context);		
 	}
 
 	@Override
@@ -50,9 +52,36 @@ class AppAdapter extends ArrayAdapter<AppItem> {
 		}
 
 		holder.textviewTitle.setText(app.getTitle());
-
-		holder.imageviewIcon.setImageDrawable(app.getIcon());
+		
+		
+		new ImageLoader().execute(holder.imageviewIcon, app);
+		
+		
 
 		return convertView;
+	}
+	
+	public class ImageLoader extends AsyncTask<Object, String, Drawable> {
+
+	    private ImageView view;
+	    private Drawable icon= null;
+
+	    @Override
+	    protected Drawable doInBackground(Object... parameters) {
+
+	        // Get the passed arguments here
+	        view = (ImageView) parameters[0];
+	        AppItem app = (AppItem)parameters[1];
+
+	        icon = app.getIcon();
+	        return icon;
+	    }
+
+	    @Override
+	    protected void onPostExecute(Drawable icon) {
+	        if (icon != null && view != null) {
+	            view.setImageDrawable(icon);
+	        }
+	    }
 	}
 }
