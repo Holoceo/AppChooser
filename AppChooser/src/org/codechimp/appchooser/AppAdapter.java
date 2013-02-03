@@ -57,11 +57,10 @@ class AppAdapter extends ArrayAdapter<AppItem> {
 		new ImageLoader().execute(holder.imageviewIcon, app);
 		
 		
-
 		return convertView;
 	}
 	
-	public class ImageLoader extends AsyncTask<Object, String, Drawable> {
+	public class ImageLoader extends AsyncTask<Object, Void, Drawable> {
 
 	    private ImageView view;
 	    private Drawable icon= null;

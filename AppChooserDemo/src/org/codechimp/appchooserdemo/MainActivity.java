@@ -35,7 +35,6 @@ public class MainActivity extends Activity implements AppChooserListener  {
 				
 			}
 		});
-
 	}
 
 	@Override
@@ -46,8 +45,8 @@ public class MainActivity extends Activity implements AppChooserListener  {
 	}
 
 	@Override
-	public void onAppChooserDismiss() {
-		textviewSelected.setText("Dismissed");
+	public void onAppChooserCancel() {
+		textviewSelected.setText("Cancelled");
 		
 	}
 

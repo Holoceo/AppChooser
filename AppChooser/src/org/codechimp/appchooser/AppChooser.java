@@ -47,9 +47,8 @@ public class AppChooser {
 
 			@Override
 			public void onCancel(DialogInterface dialog) {
-				appChooserListener.onAppChooserDismiss();				
-			}
-			
+				appChooserListener.onAppChooserCancel();				
+			}		
 		});
 		
 		final Dialog dialog = builder.create();
