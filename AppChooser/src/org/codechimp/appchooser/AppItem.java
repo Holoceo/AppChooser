@@ -5,20 +5,20 @@ import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.Drawable;
 
 public class AppItem {
-	private Context context;
 	private ApplicationInfo applicationInfo;
 	private String title;
 	private String packageName;
-	private Drawable icon = null;
+	public Drawable icon;
 
 	public AppItem(Context context, ApplicationInfo applicationInfo) {
-		this.context = context;
 		this.applicationInfo = applicationInfo;
 		this.title = applicationInfo.loadLabel(context.getPackageManager())
 				.toString();
 		this.packageName = applicationInfo.packageName;
-		
-		//this.icon = applicationInfo.loadIcon(context.getPackageManager());
+	}
+	
+	public ApplicationInfo getApplicationInfo() {
+		return applicationInfo;
 	}
 
 	public String getTitle() {
@@ -29,11 +29,11 @@ public class AppItem {
 		return packageName;
 	}
 
-	public Drawable getIcon() {		
+	public Drawable getIcon(Context context) {
 		if (icon == null)
+		{
 			icon = applicationInfo.loadIcon(context.getPackageManager());
-
+		}
 		return icon;
 	}
-	
 }
