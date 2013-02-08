@@ -1,6 +1,6 @@
 package org.codechimp.appchooserdemo;
 
-import org.codechimp.appchooser.AppChooser;
+import org.codechimp.appchooser.AppChooserDialog;
 import org.codechimp.appchooser.AppChooserListener;
 import org.codechimp.appchooser.AppItem;
 
@@ -31,7 +31,7 @@ public class MainActivity extends Activity implements AppChooserListener  {
 			public void onClick(View v) {
 				
 				// The method to display the dialog
-				AppChooser.showChooserDialog(v.getContext(), activity);				
+				AppChooserDialog.show(v.getContext(), activity);				
 				
 			}
 		});

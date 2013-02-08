@@ -18,17 +18,17 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class AppChooser {
+public class AppChooserDialog {
 
 	static List<AppItem> appList = new ArrayList<AppItem>();
 
-	public static void showChooserDialog(final Context context,
+	public static void show(final Context context,
 			final AppChooserListener appChooserListener) {
-		showChooserDialog(context, appChooserListener,
+		show(context, appChooserListener,
 				context.getString(R.string.appchooser_dialogtitle));
 	}
 
-	public static void showChooserDialog(final Context context,
+	public static void show(final Context context,
 			final AppChooserListener appChooserListener,
 			final String dialogTitle) {
 
