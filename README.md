@@ -1,6 +1,7 @@
-[![Stories in Ready](https://badge.waffle.io/codechimp-org/AppChooser.png?label=ready)](https://waffle.io/codechimp-org/AppChooser)  
 AppChooser
 ==========
+
+[![Stories in Ready](https://badge.waffle.io/codechimp-org/AppChooser.png?label=ready)](https://waffle.io/codechimp-org/AppChooser)  
 
 AppChooser is a library for Android designed to facilitate easy selection of an installed application via a dialog.
 
